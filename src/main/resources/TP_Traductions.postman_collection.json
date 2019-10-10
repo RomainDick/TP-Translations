@@ -1,0 +1,315 @@
+{
+	"id": "28ef2cea-0345-44ed-b03d-c9e16db5d72f",
+	"name": "TP_Traductions",
+	"description": "# TP Traduction\n\nDans ce TP vous devrez créer une API REST en utilisant le framework spring boot en JAVA 8.\n\n",
+	"auth": null,
+	"events": null,
+	"variables": null,
+	"order": [],
+	"folders_order": [
+		"67c8d2a5-9eab-4c8e-b885-e71166f308bf"
+	],
+	"folders": [
+		{
+			"id": "67c8d2a5-9eab-4c8e-b885-e71166f308bf",
+			"name": "Tests",
+			"description": null,
+			"auth": null,
+			"events": null,
+			"collection": "28ef2cea-0345-44ed-b03d-c9e16db5d72f",
+			"folder": null,
+			"order": [
+				"24d0ba7c-7e41-41ec-a633-7edf61d06d99",
+				"d56bc975-5e10-47cc-a0af-9242918d92a3",
+				"c974115a-6deb-4806-a638-eabac347ae60",
+				"5c89a1bd-7219-4857-987d-a77a20e31871",
+				"6c9cc1eb-68b4-49c8-9bc4-058a9b3abe93",
+				"9da3b410-5397-477a-bd3d-7645afbed6be",
+				"3b3b94a5-882d-4388-b53b-6ba2d69ae374"
+			],
+			"folders_order": []
+		}
+	],
+	"requests": [
+		{
+			"id": "24d0ba7c-7e41-41ec-a633-7edf61d06d99",
+			"name": "Create app 1",
+			"url": "http://localhost:8080/applications",
+			"description": null,
+			"data": [],
+			"dataMode": "raw",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"name": "Content-Type",
+					"type": "text",
+					"value": "application/json"
+				}
+			],
+			"method": "POST",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "6037d9db-dce6-4ded-a242-9a26fd359ac7",
+						"exec": [
+							"pm.test(\"Successful POST request\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([201,202]);",
+							"});",
+							"pm.test(\"Test id value\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.id).to.eql(1);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"folder": "67c8d2a5-9eab-4c8e-b885-e71166f308bf",
+			"rawModeData": "{\n\t\"name\" : \"app_1\",\n\t\"description\": \"My app 1\"\n}",
+			"headers": "Content-Type: application/json\n",
+			"pathVariables": {}
+		},
+		{
+			"id": "3b3b94a5-882d-4388-b53b-6ba2d69ae374",
+			"name": "Delete an entry",
+			"url": "http://localhost:8080/applications/2/translations/6/entries/7",
+			"description": null,
+			"data": [],
+			"dataMode": "raw",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"method": "DELETE",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "55099073-ec86-49a7-8a96-a283e6e1e2e3",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {",
+							"    pm.response.to.have.status(204);",
+							"});"
+						]
+					}
+				}
+			],
+			"folder": "67c8d2a5-9eab-4c8e-b885-e71166f308bf",
+			"rawModeData": "",
+			"headers": "Content-Type: application/json\n",
+			"pathVariables": {}
+		},
+		{
+			"id": "5c89a1bd-7219-4857-987d-a77a20e31871",
+			"name": "Trads app 2",
+			"url": "http://localhost:8080/applications/2/translations",
+			"description": null,
+			"data": [],
+			"dataMode": "raw",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"method": "POST",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "81c02da2-d086-4988-aa71-2b5d88bd5bc0",
+						"exec": [
+							"pm.test(\"Successful POST request\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([201,202]);",
+							"});",
+							"pm.test(\"Test id value\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.id).to.eql(6);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"folder": "67c8d2a5-9eab-4c8e-b885-e71166f308bf",
+			"rawModeData": "{\n\t\"language\" : \"en-UK\",\n\t\"entries\" : [\n\t\t{\n\t\t\t\"key\": \"MY_FIRST_TRANSLATION\",\n\t\t\t\"value\": \"Ma first translation\"\n\t\t},\n\t\t{\n\t\t\t\"key\": \"MY_SECONDE_TRANSLATION\",\n\t\t\t\"value\": \"My second translation\"\n\t\t}\n\t]\n}",
+			"headers": "Content-Type: application/json\n",
+			"pathVariables": {}
+		},
+		{
+			"id": "6c9cc1eb-68b4-49c8-9bc4-058a9b3abe93",
+			"name": "Update an entry",
+			"url": "http://localhost:8080/applications/2/translations/6/entries/7",
+			"description": null,
+			"data": [],
+			"dataMode": "raw",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"method": "PUT",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "822bd94d-6aa1-427e-8fef-32a3e8ef21d7",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"Test id value\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.id).to.eql(7);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"folder": "67c8d2a5-9eab-4c8e-b885-e71166f308bf",
+			"rawModeData": "{\n\t\"key\": \"MY_FIRST_TRANSLATION\",\n\t\"value\": \"My first translation\"\n}",
+			"headers": "Content-Type: application/json\n",
+			"pathVariables": {}
+		},
+		{
+			"id": "9da3b410-5397-477a-bd3d-7645afbed6be",
+			"name": "Get an entry",
+			"url": "http://localhost:8080/applications/2/translations/6/entries/7",
+			"description": null,
+			"data": [],
+			"dataMode": "raw",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"method": "GET",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "822bd94d-6aa1-427e-8fef-32a3e8ef21d7",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"Test id value\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.id).to.eql(7);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"folder": "67c8d2a5-9eab-4c8e-b885-e71166f308bf",
+			"rawModeData": "",
+			"headers": "Content-Type: application/json\n",
+			"pathVariables": {}
+		},
+		{
+			"id": "c974115a-6deb-4806-a638-eabac347ae60",
+			"name": "Trads app 1",
+			"url": "http://localhost:8080/applications/1/translations",
+			"description": null,
+			"data": [],
+			"dataMode": "raw",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"method": "POST",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "4adc5f12-87e5-4a51-b7e8-c7753acb8fb4",
+						"exec": [
+							"pm.test(\"Successful POST request\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([201,202]);",
+							"});",
+							"pm.test(\"Test id value\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.id).to.eql(3);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"folder": "67c8d2a5-9eab-4c8e-b885-e71166f308bf",
+			"rawModeData": "{\n\t\"language\" : \"fr-FR\",\n\t\"entries\" : [\n\t\t{\n\t\t\t\"key\": \"MY_FIRST_TRANSLATION\",\n\t\t\t\"value\": \"Ma première traduction\"\n\t\t},\n\t\t{\n\t\t\t\"key\": \"MY_SECONDE_TRANSLATION\",\n\t\t\t\"value\": \"Ma seconde traduction\"\n\t\t}\n\t]\n}",
+			"headers": "Content-Type: application/json\n",
+			"pathVariables": {}
+		},
+		{
+			"id": "d56bc975-5e10-47cc-a0af-9242918d92a3",
+			"name": "Create app 2",
+			"url": "http://localhost:8080/applications",
+			"description": null,
+			"data": [],
+			"dataMode": "raw",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"name": "Content-Type",
+					"value": "application/json",
+					"type": "text"
+				}
+			],
+			"method": "POST",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f98b9320-8e73-403c-877d-d7c068cfee82",
+						"exec": [
+							"pm.test(\"Successful POST request\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([201,202]);",
+							"});",
+							"pm.test(\"Test id value\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.id).to.eql(2);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"folder": "67c8d2a5-9eab-4c8e-b885-e71166f308bf",
+			"rawModeData": "{\n\t\"name\" : \"app_2\",\n\t\"description\": \"My app 2\"\n}",
+			"headers": "Content-Type: application/json\n",
+			"pathVariables": {}
+		}
+	]
+}
